@@ -1,0 +1,1218 @@
+
+
+===== PAGE 1 =====
+Received 28 August 2025, accepted 8 September 2025,
+date of publication 12 September 2025, date of current version 22 September 2025.
+Digital Object Identifier 10.1 109/ACCESS.2025.3609455
+Improving the Lifetime of UWSN Using
+Hybrid PSO-EULC Algorithm
+J. MURALI
+ AND T. SHANKAR
+ , (Senior Member, IEEE)
+School of Electronics Engineering, V ellore Institute of Technology, V ellore 632014, India
+Corresponding author: T. Shankar (tshankar@vit.ac.in)
+This work was supported by V ellore Institute of Technology, V ellore, Tamil Nadu, India.
+ABSTRACT Underwater wireless sensor networks (UWSNs) are commonly used for data transmission
+underwater, detecting volcanic movements, and detecting water pollution. A UWSN is made up of acoustic
+sensors powered by batteries. Replacement of these batteries is complicated because of the complex
+underwater conditions of UWSNs. One strategy for fixing this issue is to extend the lifetime of UWSNs
+by decreasing the energy they spend and enhancing their energy usage. This research proposes a set of
+rules based on Energy-balanced unequal layering clustering (EULC) and PSO (Particle swarm optimization)
+that enhances the performance of the lifetime of UWSNs. The proposed hybrid PSO-EULC combination
+produces UWSNs with different layering based entirely on node depth, with Cluster head (CH) nodes
+chosen using the PSO cost function. The hybrid PSO-EULC combination successfully balances the energy
+used in UWSN nodes, thus extending sensor node lifetime, packet transmission cost, and network lifetime.
+The results are compared with Energy Efficient Unequal Multilevel Clustering (EEUMC), Energy-balanced
+reliable and effective clustering (EBREC), and LEACH with parameters such as residual energy, dead nodes,
+and total packets received at different initial power levels of 1J,0.5J for 6400 bits, and 4000 bits of data
+transmission. As per case 4 the residual energy of 44.4% improved, dead nodes 15% less, and 50.25% of
+received packets is achieved by comparing it with the EEUMC algorithm.
+INDEX TERMS Bio-inspired algorithms, clustering algorithms, energy efficiency, hybrid algorithms,
+lifetime enhancements.
+I. INTRODUCTION
+Water comprises the majority of the Earth’s environment,
+amounting to more than 75% of its region. Water surrounds
+the Earth in so many ways, especially rivers, lakes, and
+oceans, and plays an important part in humans and the
+existence of extraordinary wildlife [1]. Due to technological
+advancements, sensors can now be used to explore river
+and lake habitats. Research is very limited because of
+many challenges that occur unpredictably. There are a
+few challenges, such as limited visibility, uneven surfaces,
+depth, pressure, water currents, and creature movements,
+and there are still many to be explored. Wireless sensor
+networks evolved to measure real-time data in remote
+locations and in places where it is infeasible to measure data
+The associate editor coordinating the review of this manuscript and
+approving it for publication was Xuebo Zhang
+.
+in a land environment. The same kind of challenge exists in
+an underwater environment where the need arises to collect
+underwater data. These sensors can collect data and are
+integrated with clever sensing and sophisticated computing.
+UWSNs comprise many impartial Sensor Nodes (SNs) that
+are similar and energy-constrained. These underwater Sensor
+Nodes are placed in rivers or oceans to find factors such
+as temperature, pressure, density,water pollution and many
+other details in the water environment. A data processing
+facility for needs compiles this type of information. Humans
+benefit details from environmental changes in various ways,
+including ecological observation, disaster prediction, navy
+surveillance, and guided navigation. Special analysis of the
+undersea environment helps humans observe underwater
+life, catastrophe predictions, track water contamination, and
+explore seas. UWSN challenges include multipath fading,
+error in bits, constrained energy of SNs, moving water,
+VOLUME 13, 2025
+
+ 2025 The Authors. This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 License.
+For more information, see https://creativecommons.org/licenses/by-nc-nd/4.0/ 162057
+
+===== PAGE 2 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+and delay in data arrival. The objective is to design a hybrid
+bio-inspired algorithm to increase the lifetime of energy
+of SNs by optimizing Cluster Head (CH) selection. Since
+sensors are deployed randomly in underwater environments,
+continuous data transmission can quickly drain their energy,
+leading to blind zones where data cannot be retrieved.
+To address this issue, the clustering concept was proposed
+to alleviate the burden on sensor nodes (SNs). A CH is
+selected for a group of SNs based on their energy levels
+at that specific moment. Additionally, a rotation policy is
+implemented to periodically change the CH, helping to
+maintain the stability of the SNs’ energy levels and preventing
+network breakdown.
+As per the pioneer algorithm, the Low Energy Adaptive
+Clustering Hierarchy (LEACH) is a graded protocol in which
+multiple nodes send data to CHs. The CHs consolidate and
+reduce this data before transmitting it to the sink or Base
+Station(BS). Every SN employs a stochastic process in each
+round to determine if it will serve as a CH. LEACH operates
+under the premise that every SN has a broadcast capable
+of communicating directly with the BS or the closest CH.
+However, continuously broadcasting full power can lead to
+energy waste.
+Over a set number of rounds, denoted as P , nodes
+that have served as CHs can be re-elected as CHs again.
+P represents the desired proportion of CHs in the network.
+Consequently, each node that is not a CH has a 1/P chance
+of being selected as a CH again. Each non-CH node chooses
+the nearest CH and joins that cluster after every round.
+The CH then establishes a schedule for every SN in the
+cluster to send its data. Non-CH nodes link with the CH
+using Time Division Multiple Access (TDMA), following
+the schedule established by the CH. They accomplish this
+by transmitting the CH at the least power necessary to
+communicate, effectively conserving energy. Based on these
+challenges and issues, one of the main objectives is to
+reduce the dead nodes, increase the lifetime of SNs, and
+optimize CH selection using the proposed hybridization of
+the PSO-EULC algorithm. The hybridization is built on the
+EULC algorithm, which elects CH in a timely manner, but
+it does not elect CH based on energy levels, depth, and
+unequal level arrangement of SNs. PSO is hybridized to fulfill
+the drawbacks of EULC by optimizing the CH selection
+process by its behaviour of optimizing the problem based
+on cost function designed to elect CH in a better way so
+that the network remains active for a long time and SNs
+save their energy levels using the optimization of this hybrid
+technique.
+The remaining sections of the paper are organized as
+follows: Section II analyzes related works. Section III
+presents the UWSN system model and discusses clustering
+using uneven layering methods. Section IV introduces the
+proposed PSO-EULC algorithm. Section V discusses the
+simulation results and analysis to show the improvements in
+the lifetime of SNs. Finally, Section VI provides a conclusion
+and outlines future research directions.
+II. RELATED WORKS
+A review of recent literature highlights the vital role
+of acoustic sensors in UWSNs for collecting data from
+deep-sea environments [2]. Extensive research has led
+to the development of various routing protocols aimed
+at improving data transmission efficiency and extending
+network lifetime [3]. Among them, the LEACH algorithm
+enhances network performance through randomized rota-
+tion and uniform clustering [4]. The foundational LEACH
+protocol introduced adaptive clustering to improve energy
+efficiency in sensor networks. The principles of dynamic
+CH rotation and data aggregation is useful for optimizing
+energy usage and increasing lifetime through intelligent
+clustering [5], while EEHC adopts a hierarchical clustering
+strategy that prolongs network activity. However, EEHC
+may burden CHs, causing faster energy depletion [6].
+To address this, a distributed CH selection approach was
+introduced to balance energy usage, outperforming LEACH
+in terms of longevity [7]. Bio-inspired techniques like
+Particle Swarm Optimization (PSO) have gained popularity
+due to their ease of implementation, faster convergence,
+and higher solution quality [8]. PSO has been effectively
+used for optimal CH election by considering neighbor-
+hood density and cluster compactness [9]. Complementing
+this, the Enhanced Unequal Layered Clustering (EULC)
+model introduces irregular layering based on node depth
+to counter hotspot issues by forming variable-sized clusters
+within layers [10]. However, methods such as DEBCR that
+select CHs based on depth and non-residual energy can
+result in inconsistent cluster structures in a 3D underwater
+environment [11]. By integrating the strengths of both
+PSO and EULC, a hybrid framework was developed to
+reduce energy consumption, improve data transmission, and
+minimize node death across operational rounds. This model
+emphasizes residual energy and power levels of sensor
+nodes over mere distance metrics [12]. A fitness function
+is employed to optimize CH selection and enhance sensor
+node longevity, addressing limitations observed in earlier
+models that focused less on lifetime enhancement [13].
+Techniques such as ridge-based routing from CHs to the
+sink have also been introduced to reduce overall energy
+drain [14]. From an application-level perspective, some
+works analyze data loss and transmission errors through CHs.
+In parallel, the potential of millimeter-wave communication
+for deep underwater transmission at high frequencies has
+been explored [15]. Although time-based scheduling is used
+to prevent early node deactivation, irregular node placement
+across varying depths necessitates CH election strategies
+that consider both energy levels and spatial distribution—
+factors often overlooked in traditional models [16]. To further
+improve energy optimization, researchers have turned to
+advanced metaheuristics. For example, Fei et al. utilized
+moth flame optimization to enhance energy efficiency,
+though challenges remain regarding CH election across layers
+and sensor lifetime [17]. Other works adopt dynamic CH
+rotation by setting energy thresholds, thus avoiding premature
+162058 VOLUME 13, 2025
+
+===== PAGE 3 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+energy exhaustion of individual nodes [18]. Additionally,
+physical factors like underwater pressure, which signifi-
+cantly impact sensor stability and communication, have
+been accounted for in multi-level clustering designs [19].
+Dynamic clustering mechanisms have also been proposed
+to increase lifespan, although many do not address 3D
+mobility induced by ocean currents [20]. Multi-hop com-
+munication with controlled hop counts offers a practical
+solution to balance energy usage while considering delay
+and cost metrics [21]. One such efficient solution is the
+EEUMC protocol, which structures nodes hierarchically
+based on proximity to the sink and energy levels, outper-
+forming benchmarks like EBREC, EECMR, and DBR in
+MA TLAB simulations through improved packet delivery
+and reduced energy loss [22]. However, challenges such
+as re-clustering due to depth variations remain, suggesting
+a need for adaptive strategies like energy harvesting and
+machine learning [12]. The EBREC algorithm enhances
+data transmission reliability through balanced energy usage
+and optimal path selection. It utilizes a 3D cylindrical
+architecture with dual sinks and bottom-up routing to
+mitigate packet loss caused by underwater noise and signal
+attenuation, thereby extending network activity [23]. While
+game-theoretic approaches have demonstrated effectiveness
+in prolonging network life, they often depend on centralized
+decision-making and intricate modeling of preferences [24].
+In contrast, decentralized, energy-aware clustering methods
+offer a more scalable and adaptive alternative. Hybrid
+acoustic-optical architectures have also been proposed to
+overcome communication constraints. Liu et al. introduced
+an energy-efficient initialization framework for UWOANs,
+focusing on low-power communication and precise node
+coordination. While their model emphasizes network setup,
+clustering-based optimization complements it by optimizing
+role assignment and routing for enhanced longevity [25].
+Wang et al. proposed that the quality of the forwarding
+metric introduces an effortless evaluation of path quality
+by considering both link and node forwarding reliability,
+where routing decisions are influenced by energy and
+reliability metrics to optimize lifetime and robustness [26].
+Node-level optimization has also been explored for target
+tracking. Lv et al. proposed a dynamic selection algorithm
+based on posterior Cramér–Rao lower bounds, integrating
+node mobility and energy constraints for more accurate
+and energy-efficient tracking [27]. This aligns well with
+broader clustering efforts aimed at lifetime extension.
+Several alternative hybrid metaheuristics have emerged. For
+instance, Byeon et al. proposed a Hybrid Path Finder–V ortex
+Search (HPF-VS) algorithm combined with Improved Dwarf
+Mongoose Optimization (IDMO) to address issues like void
+regions and depth variability [28]. Similarly, Wang et al.
+introduced a fuzzy clustering model that dynamically selects
+CHs based on residual energy, water depth, and sink
+distance, emphasizing adaptive clustering in underwater
+environments [29]. Other noteworthy contributions include
+the GJERO-based HOSEMU model, which addresses energy
+hole issues through sink mobility and hybrid optimiza-
+tion [30], and the HGS-MPA method, which improves
+routing through intelligent, energy-aware CH selection [31].
+Protocols like EHDDAHRP introduce mechanisms such
+as dynamic depth adjustment and semantic self-healing,
+enhancing energy efficiency and fault tolerance in under-
+water networks [32]. Metaheuristic approaches such as
+GSA-based clustering, Red Piranha Optimization (RPO),
+and hybrid fuzzy logic methods have shown promise in
+optimizing CH selection and ensuring energy-aware data
+transmission [33], [34], [35]. Similarly, dual-metaheuristic
+models like BWF-SWO, and hybrid protocols like ESP
+(which combines Cuckoo Search and Genetic Algorithms),
+support efficient clustering and energy scheduling [36], [37].
+Lastly, QHRP—a Q-learning-based hierarchical routing
+protocol—illustrates the value of learning-based, adaptive
+strategies in routing, which aligns well with the objectives
+of clustering-based optimization for long-term underwater
+network performance [38].
+Based on the literature survey, Table 1 provides a
+comparative summary of the existing methods, including
+their techniques, key features, advantages, and limitations,
+thereby highlighting both the strengths and weaknesses
+of prior approaches. Furthermore, the proposed PSO-
+EULC hybrid model was developed and compared with
+EEUMC, EBREC, EULC, and LEACH algorithms. Its
+features were validated and fine-tuned for effective and opti-
+mized CH selection, leading to improved network lifetime
+of SNs.
+III. PROBLEM STATEMENT AND MOTIVATION
+A set of strategies based on power-unequal layered clustering
+has been developed to lower energy spending between cluster
+communications. The EULC approach designs clusters of
+different sizes within the same layer. The communication
+radius is utilized to segment the depth of the network
+distribution into distinct layers [39].
+SNs assign weights by considering residual energy,
+proximity to the sink, and the node’s position. The CH is
+identified as the node with maximum weight. Each node
+records the statistics of its adjacent CHs and calculates
+averaging functions to all neighbouring CHs, taking into
+account both the distances between the nodes and the residual
+energy levels of the nodes. From the collected data, every
+node determines the next CH.
+The proposed protocol’s operation is based on the moti-
+vation of a consolidated set of rules executed at the base
+station, with an elevated node transmitting the data. The
+recommended protocol is structured into rounds, with every
+round beginning with an initialization part where clusters are
+modelled. This is seen by a steady UWSN phase, in which we
+utilized the same method. All nodes transmit data to the Sink,
+indicating their remaining energy and distance at the start of
+each setup phase. The Sink estimates the CH election stage
+of all nodes using this information. To ensure that only a few
+nodes with adequate power are chosen as CHs, nodes with
+VOLUME 13, 2025 162059
+
+===== PAGE 4 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+TABLE 1. Summary of related works.
+higher energy states can also participate in the CH selection
+process. The lowest station then uses a function to find the
+few selected K CHs using the PSO rules. The hybrid bio-
+inspired algorithms have optimized lifetime in CH selection
+policies [40].
+IV. CONTRIBUTION
+The objective is to optimize CH selection, reduce the
+energy consumption of SNs, improve packet delivery ratio,
+reduce dead nodes ratio, and improve the lifetime of SNs
+using the hybrid model of the EULC algorithm with PSO.
+The contribution towards the goal is developing the EULC
+algorithm and mapping its behaviour with the PSO algorithm
+to find its effective CH selection process, which is the
+primary task towards the objective, followed by comparing
+it with the results of non-hybrid mode EEUMC, EBREC,
+EULC, and LEACH. Simulations were conducted to evaluate
+residual energy, the onset of dead nodes, and the number of
+packets transmitted versus rounds, using initial energy levels
+of 1 joule with a packet size of 6400 bits, and 0.5 joule
+with a packet size of 4000 bits. The results demonstrate that
+the PSO-EULC algorithm outperforms the other algorithms
+considered for validation.
+The specialty of the PSO-EULC hybridization is the even
+distribution of energy across uneven layers, considering
+the SNs closer to sink and farther in forming CHs. The
+dynamical adjustments in the size of clusters based on
+distance and energy from the sink are considered to reduce
+energy consumption and prolong the lifetime of SNs. The
+SNs with higher residual energy get elected as CHs on
+an adaptive basis, ensuring equal energy levels across the
+network. PSO is used to optimize the selection of CHs by
+minimizing energy consumption and maximizing network
+coverage, which ensures that the most energy-efficient SNs
+are chosen as CHs. PSO explores the entire search space to
+find the best set of CHs, avoiding local optima that traditional
+algorithms might fall within desired levels. PSO adapts to
+changes in the network with node deaths and energy depletion
+by reevaluating the fitness function in every round. The
+hybridization of PSO-EULC ensures energy efficiency, load
+balancing, and extended lifetime of SNs. This traditional
+approach outperforms all the other clustering algorithms.
+162060 VOLUME 13, 2025
+
+===== PAGE 5 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+FIGURE 1. UWSN scenario.
+FIGURE 2. Cluster head selection in UWSN.
+V. UWSN SYSTEM MODEL
+In a three-dimensional UWSN scenario as shown in Figure 1,
+there are three types of SNs: static SNs anchored to the
+seabed, dynamic SNs float inside water, and sink floats on
+surface. During the deployment phase of UWSN, SNs are
+unevenly placed within a confined area, while the sink is
+positioned on the surface. The subsequent assumptions apply
+to this setup:
+• All SNs are positioned within a confined volume,
+sharing similar systems and energy characteristics
+but possessing individual IDs; every node knows its
+position.
+• Every node may perform the functions of both normal
+and CH nodes. All nodes can aggregate, record infor-
+mation, and change transmitting strength based on the
+distance between records.
+• The sink is positioned on the top surface in a confined
+space and may connect to all nodes in the network.
+• The SNs gather statistics on a regular schedule. Nodes
+within a layer send data to that layer’s CH, which
+then transmits information to the CH one layer higher,
+concluding with the CH at the top layer.
+The formation of CH selection based on the condition can be
+visualized as in Figure 2 Based on the underwater acoustic
+communication energy consumption model [2], let P0, A(d)
+and Tl denote the receive power of a single node, the
+attenuation as distance, d and the time delay in transferring
+l bits of information, respectively. Therefore, the energy
+consumption of sending l bits of information expressed in
+equation (1)
+Esend (l, d) = Tl · P0 · A(d) (1)
+The attenuation A(d) is given by [41] equation (2)
+A(d) = d k · ad (2)
+where k is the energy spreading factor (k is 1 for cylindrical,
+1.5 for practical, and 2 for spherical spreading), and
+a = 10α(f )/10 (3)
+is a frequency-reliant term attained from the absorption
+coefficient α(f ) as in equation (3). The absorption coefficient
+for the frequency range of interest is estimated according to
+Thorp’s expression [41] as given as in equation (4)
+α(f ) = 0.11 × f 2
+1 + f 2 + 44 × f 2
+4100 + f 2 + 2.75 × 10−4
+× f 2 + 0.003 (4)
+in dB/km for in kHz. The energy used by each SN to receive
+l bits of data can be expressed as in equation (5)
+Ereceive (l) = l × Eprocess (5)
+The energy consumption of the processing unit in an
+acoustic SN to process one bit of data is referred to
+as Eprocess. In UW ASNs, the energy spent on receiving data is
+comparatively low when measured against the overall energy
+consumed for information transmission. The energy spent
+when processing l bits of information can be expressed as
+in equation (6):
+EIntegerate(l = l × El) (6)
+El represents the energy required to process a single bit of
+information.
+A. EULC CLUSTERING IN UNEVEN LA YERING MODEL
+Layering will help UWSNs achieve a uniform distribution of
+CHs, simplifying community versions and regulating energy
+spent. The EULC version separates UWSNs into regions
+with different spacings that rise steadily from maximum to
+minimum. Acoustic SN clusters only within their respective
+layers, based on competitive radii determined by the distances
+between CHs and the sink [42]. Let h i represent the UWSN
+intensity of SN denoted as ‘i’. The setup shall be divided
+into ‘s ‘ region according to SN depths, with the gaps in the
+‘ k’th region denoted as r k (where k = 1, 2). The spacing
+follows the equation rk = rk−1 +δ r, with δ r being a constant.
+If a UWSN satisfies the condition h i < r 1, The Uneven
+layering scenario can be seen in Figure 3. where r1 equals the
+actual communication radius R 0, it will be positioned in the
+VOLUME 13, 2025 162061
+
+===== PAGE 6 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+FIGURE 3. Uneven layering model.
+first layer. In the UWSN scenario, node ‘i’ will calculate its
+specific layer using equation (7).
+Li =
+[ hi + △r
+Ro + △r
+]
+(7)
+VI. PROPOSED HYBRID PSO-EULC ALGORITHM
+The EULC algorithm is designed using an unequal layering
+approach. It calculates the energy of nodes based on their
+distance from the sink and the CH. CHs are rotated at
+regular intervals following this strategy, ensuring that the
+energy levels of all SNs remain balanced. This helps to
+extend the overall lifetime of the network. The bio-inspired
+optimization method known as Particle Swarm Optimiza-
+tion (PSO) is based on the social behavior of swarms,
+including fish schools or flocks of birds. PSO involves a
+population of particles (possible solutions) that update their
+locations and velocities to explore the solution space. The
+swarm’s global best position and each particle’s best-known
+position (personal best) are used to modify their trajectory.
+The algorithm iteratively improves solutions by balancing
+exploration (looking for new locations) and exploitation
+(concentrating on potential places). PSO is frequently used
+for issues including clustering, optimization, and machine
+learning since it is computationally efficient and simple to
+apply. It performs exceptionally well at managing intricate,
+multi-dimensional areas. The PSO algorithm, as shown
+in Algorithm 2, shows the optimization of the CH selection
+process.
+Hybridization of PSO and EULC is done by mapping the
+behaviour of SNs.Initial cluster formation is done using the
+EULC algorithm, and CH selection is optimized based on
+fitness functions such as residual energy, sink position, and
+SN position. This is done using PSO, and the primary goal of
+topology control is to identify k-CHs from the members of the
+clusters to minimize the objective function, which is regarded
+as an optimization problem. V arious conventional algorithms
+Algorithm 1 Energy-Balanced Unequal Layering Clustering
+(EULC) Algorithm for UWSNs
+Require: Number of nodes N , network size (X , Y , Z ), sink
+location (x s, ys, zs), initial energy Eini, communication
+radius R0, layer spacing 1r, weight factors α, β, γ ,
+cluster-head ratio Pc, balance factor ε.
+1: Initialize nodes with random positions and energy Eini
+2: for each node i do
+3: Calculate layer: as per equation (7)
+4: end for
+5: for each layer k in network do
+6: Find nodes in layer k
+7: Calculate average residual energy Eavg
+8: for each node i in layer k do
+9: Calculate distance to sink di−sink
+10: Calculate node degree Nk_i
+11: if Eres(i) > Eavg then
+12: Compute weight:
+Wk_i = α · Eres(i)
+Eini
++β ·
+(
+1− di−sink
+dmax
+)
++γ · Nk_i
+13: else
+14: Wk_i = 0
+15: end if
+16: end for
+17: Select node with maximum weight as cluster-head
+18: end for
+19: for each cluster-head i do
+20: Find adjacent cluster-heads j where Lj < Li
+21: Compute routing selection function:
+P(i, j) = ε · Eini(j)
+Eres(j) + (1 − ε) ·
+d 2
+i−j + d 2
+j−sink
+d 2
+i−sink
+22: Select next-hop node with minimum P(i, j)
+23: end for
+24: Perform data transmission from CHs to sink
+based on soft computing techniques have been discussed in
+the literature to address optimization issues. The proposed
+EULC algorithm shows how to achieve the objectives of
+optimized CH selection and lifetime improvement of SNs
+as in Algorithm 1.PSO is one effective soft computing
+method that can solve these optimization problems. However,
+traditional algorithms have some limitations, such as slow
+convergence, sensitivity to initial values, and challenges
+specific to UWSNs. The energy spent by the CH node
+within the clusters is more than that of the other member
+nodes, according to the energy model. The community’s
+lifespan is the primary criterion for determining whether
+topology control needs to be implemented. Consequently,
+the selection system for CH nodes considers the power
+consumption shared among all nodes in the network to
+prevent the premature failure of a few nodes. Each node’s
+residual energy is evaluated relative to the network’s overall
+capacity, and a node is considered an optimal candidate
+162062 VOLUME 13, 2025
+
+===== PAGE 7 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+Algorithm 2 PSO Algorithm for CH Optimization
+1: Input:
+2: num_particles: Number of particles (candidate solutions)
+3: num_iterations: Maximum number of iterations
+4: dim: Dimensionality of the problem
+5: bounds: Search space limits (node index range)
+6: ω: Weight parameter for distance-energy tradeoff
+7: distances: Distance matrix between nodes and sink
+8: energy_levels: Remaining energy levels of nodes
+9: Output:
+10: best_position: Optimal node selection
+11: best_value: Minimum cost value found
+12: Step 1: Initialization
+13: Initialize particle positions randomly within bounds
+14: Initialize velocities to zero
+15: Round positions to nearest node indices
+16: Compute initial fitness values using:
+Cost(j) = ω · d(si, sj)2 + d(sj, SN )2
+max(d(si, sj)2 + d(sj, SN )2) + (1 − ω) · max(E(j)) − E(i)
+max(E(j)) (8)
+17: Set personal bests and determine global best
+18: Step 2: Iterative Optimization Process
+19: for iteration = 1 to num_iterations do
+20: for each particle i do
+21: Update velocity:
+vi = w · vi + c1 · r1 · (pbesti − xi) + c2 · r2 · (gbest − xi) (9)
+22: Update position:
+xi = xi + vi (10)
+23: Apply boundary constraints and round to nearest node
+24: Evaluate new fitness value Cost(j)
+25: Update personal best if improved
+26: end for
+27: Update global best if improved
+28: end for
+29: Step 3: Output Best Solution
+30: Return best_position and best_value
+for CH if its residual energy exceeds the average level.
+CH nodes are then selected from a list of candidate nodes
+using the PSO process to minimize the overall objective cost.
+The flow chart Figure 4 shows the process of optimization of
+CH selection.
+The multi-hop communication protocol transmits data
+from SN to the CH (internal cluster routing) and from
+the CH to destination [21]. The top node in every group
+aggregates data to conserve residual energy and determine
+a threshold value. When the distance linking the CH and
+the BS is shorter than a predefined edge range, the CH may
+send the aggregated records directly to the BS using single-
+hop transmission. If that distance exceeds the edge fee, the
+CH will utilize the nearest neighbour with the lowest value
+as a relay node. The neighbour may be selected solely on
+available space and remaining energy. The components listed
+in equation (11) are used to calculate the minimal cost path
+and identify the node with the highest residual energy:
+Cost(j) = ω ∗ d
+(
+si, sj
+)2 + d
+(
+sj, SN
+)2
+max(d
+(
+si, sj
+)2 + d
+(
+sj, SN
+)2 + (1 − ω)
+∗ max (E (j)) − E (i)
+max((E (j)) , ω ∈ [0, 1] (11)
+Here ω is the uneven tuning parameter: s i and sj are the CHs,
+the present CH, and the sink. Next, the CH is selected as the
+node that has the lowest distance to send information to the
+BS, and inter-cluster routing is formed after the CH is elected.
+VII. RESULTS AND ANALYSIS
+The simulation is done using MA TLAB version R2023b with
+parameters set as shown in Table 2 to create a UWSN scenario
+as shown in Figure 1 by placing SNs randomly, sink at the
+top surface in the center, and create CHs as in Figure 2
+based on EULC Algorithm 1 with necessary settings.
+VOLUME 13, 2025 162063
+
+===== PAGE 8 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+FIGURE 4. Proposed PSO-EULC algorithm flow chart.
+The proposed method PSO-EULC was simulated and
+compared using existing EEUMC, EBREC, EULC, and
+LEACH algorithms, examining two conditions based on the
+nodes’ initial energy and the number of bits transmitted.
+The performance of the proposed PSO-EULC technique for
+optimizing CH was analyzed and compared to that of existing
+algorithms.
+The evaluation involved three key metrics: residual
+energy, the number of dead nodes, and packets received
+(in bits) across four cases at two different depth levels
+of 200m and 150m.
+A. RESIDUAL ENERGY
+Residual energy is the power that remains in a sensor
+node after several communication rounds. It contributes to
+determining whether a node can continue to engage in
+sensing or routing tasks. In protocols such as EULC and
+PSO-EULC, residual energy determines the cluster heads and
+routing patterns to maximize network lifetime and avoid early
+node failures. Nodes with more residual energy are usually
+preferred for energy-intensive tasks as in equation 12,
+Eres = Einit − Econsumed (12)
+where:
+• Einit is the initial energy assigned to the node.
+• Econsumed is the cumulative energy used for transmitting,
+receiving, and processing data up to 1000 rounds.
+B. DEAD NODES
+Dead nodes are inactive since their remaining energy has
+dropped to zero. Monitoring the number of dead nodes
+over time is crucial for assessing a network’s robustness,
+energy efficiency, and longevity. Nodes gradually exhaust
+their battery as they use energy for sensing, transmission, and
+receiving.
+DeadNodes(t) = N −
+N∑
+i=1
+δ(E i
+res(t)) (13)
+162064 VOLUME 13, 2025
+
+===== PAGE 9 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+where:
+• N is the total number of nodes,
+• E i
+res(t) is the residual energy of node i at time t,
+• δ(E i
+res(t)) =
+{
+1, if E i
+res(t) > 0
+0, otherwise
+As per equation 13 supports identifying critical thresholds
+such as: FND (First Node Dead), HND (Half Nodes Dead),
+and LND (Last Node Dead).
+C. PACKETS RECEIVED
+The packets received metric represents the total number of
+data packets successfully sent from sensor nodes to the sink
+over time. It accurately depicts the routing protocol’s network
+performance, reliability, and efficacy. In underwater sensor
+networks, where transmission is energy-intensive and error-
+prone, this parameter is critical for measuring data delivery
+efficiency. At 1000 rounds, the sink receives the following
+total number of packets:
+PacketsReceived(t) =
+N∑
+i=1
+Pi
+delivered(t) (14)
+where: N is the total number of active nodes,
+Pi
+delivered(t) =
+
+
+
+1, if packet from node i
+reached sink at round t
+0, otherwise
+This metric helps evaluate Packet Delivery Ratio (PDR)
+and routing efficiency by utilizing equation 14.
+In Case 1, the energy was set to 1 joule, and 6400 bits of
+packets were transmitted. In Case 2, the energy was reduced
+to 0.5 joules, and 6400 bits of packets were sent. Case 3 also
+used 0.5 joules of energy but transmitted 4000 bits of packets,
+while in Case 4, the energy remained at ‘1 joules, transmitting
+4000 bits of data packets. Residual energy was calculated by
+summing the remaining energy of the network’s SNs. The
+lifetime of the SNs was determined by noting the last node
+death time in the network. Multiple packets were transmitted
+at a specified time to the SNs, and the number of packets
+received was recorded based on the time taken for every
+100 nodes.
+The proposed PSO-EULC’s performance was better than
+that of EEUMC, EBREC, EULC, and the LEACH algo-
+rithms, and the following analysis proved it. In Figures5, 6, 7,
+and 8, the findings demonstrate conclusive evidence that
+the performance of the proposed PSO-EULC over the
+existing EULC method in terms of residual energy is better
+than EEUMC algorithm. Figures 9, 10, 11, 12, 13 further
+illustrate that EEUMC had 21% more dead nodes than
+the proposed PSO-EULC algorithm. Compared to EEUMC,
+the proposed PSO-EULC exhibited a 40% improvement in
+residual energy, 8.33% fewer dead nodes, highlighting its
+superiority across all metrics. In Case 2, with an energy
+of 0.5 joules and 6400 bits of packets transmitted, the
+proposed PSO-EULC showed a 10.5% improvement in
+residual energy, 38.46% better efficiency in dead nodes,
+and 31.11% more packets received compared to EEUMC.
+Compared to LEACH, it demonstrated a 93.75% enhance-
+ment in residual energy, 40.625% fewer dead nodes, and
+a 44.78% increase in packets received. For Case 3, with
+0.5 joules and 4000 bits of data packets transmitted, the
+proposed PSO-EULC achieved 26.67% residual energy,
+25% dead nodes, and 37.74% packets received. Compared
+to EEUMC, it showed 86.67% residual energy, 10.69%
+less dead nodes, and 44.09% packets received. In Case 4,
+Energy 1 joule and 4000 bits, the proposed PSO-EULC
+yielded 44.4% residual energy, 15% less dead nodes, and
+50.25% packets received compared to EEUMC, which
+reached 95.10% residual energy, 43% lesser dead nodes, and
+60.71% packets received. All these performance metrics were
+calculated and analyzed using statistical analysis.
+This analysis shows that the exploration and exploitation
+of the proposed PSO-EULC algorithm performance is better
+than that of existing algorithms, and the CH selection process
+is optimized.
+TABLE 2. Simulation parameters.
+FIGURE 5. Residual energy vs rounds.
+Figure 5 shows the plot between the residual energy vs.
+the rounds. The x-axis denotes the number of rounds, and
+the y-axis indicates the residual energy in joules. Simulations
+of LEACH, EULC, EBREC, EEUMC, and the optimization
+VOLUME 13, 2025 162065
+
+===== PAGE 10 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+of proposed PSO-EULC methods were performed. In this
+case, we have taken the energy values as 1J and the average
+packet size as 6400 bits for 1000 rounds, and the task
+is performed. The residual energy plot shows a gradual
+and balanced decline in energy across the network. This
+is due to the energy-efficient CH selection and unequal
+layering, which prevent rapid energy depletion in specific
+nodes. Compared to traditional algorithms, as understood,
+the network maintains higher residual energy for a longer
+duration, showing the effectiveness of PSO-EULC. The
+results show that the proposed PSO-EULC method uses less
+energy than EEUMC because the cluster heads are elected
+based on the cost function and the iterations performed
+by the PSO method. The hybrid method also has better
+results than EBREC. This shows that hybrid methods perform
+better than individual methods. Figure 6 shows the residual
+energy of hybrid PSO-EULC performs better as it reduces
+gradually over many nodes taken for within the 150m
+range. Figure 7 shows that for 150m depth, residual energy
+levels vary for different algorithms considered for analysis,
+but hybrid PSO-EULC maintains its energy levels around
+3 joules for different depths. The results show that the energy
+consumption in each method is better compared to Figure 6
+as the average packet size is decreased to 4000 bits, so the
+load on the cluster heads is reduced. The graph shows that
+the proposed method yields better results than the other
+methods.
+FIGURE 6. Residual energy vs rounds.
+Figure 8 shows the plot between the residual energy vs
+number of nodes. EBREC, EEUMC, LEACH, EULC, and
+proposed PSO-EULC methods optimization were simulated.
+In this case, we have taken the energy values as 0.5J and
+the average packet size as 6400 bits for 1000 rounds, and
+the task is performed. The results show that the proposed
+PSO-EULC method consumes less energy than EEUMC
+up to the 300th round. There is a slight improvement in
+energy usage, and it also has better results than LEACH. This
+shows that the hybrid method performs better than the EULC
+method at a shorter range of rounds. Figure 9 shows the plot
+FIGURE 7. Residual energy vs number of nodes.
+FIGURE 8. Residual energy vs number of nodes.
+FIGURE 9. Dead nodes Vs Number of Nodes.
+between the dead nodes vs the number of nodes. EEUMC,
+EBREC, LEACH, EULC, and optimization of the proposed
+PSO-EULC methods were simulated. In this case, we have
+denoted the energy values as 0.5J and the average packet size
+as 6400 bits, and for 1000 rounds, the task is performed.
+162066 VOLUME 13, 2025
+
+===== PAGE 11 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+The results show that the first node dies at the 400th round
+for EEUMC and the 650th round in the proposed PSO-EULC,
+and 30% of the nodes die faster in EEUMC in their earlier
+stage. It shows that EULC and the proposed method follow
+the same pattern: The proposed PSO-EULC has fewer dead
+nodes than EEUMC, with fewer rounds and merges later.
+FIGURE 10. Dead nodes vs number of rounds.
+Figure 10 shows the plot between the dead nodes vs
+the number of rounds. Simulations of EEUMC, EBREC,
+LEACH, EULC, and proposed PSO-EULC methods opti-
+mization were performed. In this case, we have denoted the
+energy values as 1J and the average packet size as 6400 bits,
+and for 1000 rounds, the task is performed.
+The results show that initially, the first node dies at the
+50th round in EEUMC, 45th round in EBREC, 27th round in
+EULC, 14th round in LEACH, and 110th round in proposed
+PSO-EULC and 74% of the nodes die faster in LEACH
+WHile comparing with PSO-EULC at 200th stage, it shows
+the EULC, EBREC, EEUMC and proposed method follow
+same pattern and finalized that the proposed PSO-EULC
+comparatively has lesser number of dead nodes than EULC
+and LEACH. This data suggests that the proposed method
+yields significantly better results than in [43].
+Figure 11 shows the plot between the dead nodes vs
+the number of rounds for the 150m depth range. EEUMC,
+EBREC, LEACH, EULC, and optimization of the proposed
+PSO-EULC methods were simulated. In this case, we have
+denoted the energy values as 1J and the average packet size
+as 4000 bits, and for 1000 rounds, the task is performed.
+The performance shows that the dead nodes remain very low
+irrespective of depths, which shows hybrid PSO-EULC is
+superior in performance.
+PSO ensures optimal CH selection, with fewer dead nodes,
+maintaining packet loss and maximizing data delivery. The
+plots show stable performance even as nodes start to die,
+indicating that the network adapts well to challenges. The
+number of dead nodes increases slowly, demonstrating that
+the hybrid approach effectively balances energy consumption
+and prolongs the SN lifetime. PSO-EULC ensures that
+FIGURE 11. Dead nodes vs number of rounds.
+node deaths are spread out even over time, compared with
+traditional algorithms, which die in clusters, which indicates
+balanced energy usage. Figure 12 shows the plot between the
+dead nodes vs the number of nodes. Simulations of EEUMC,
+EBREC, LEACH, and EULC and the optimization of the
+proposed PSO-EULC methods were performed. In this case,
+we have denoted the energy values as 0.5J and the average
+packet size as 4000 bits, and for 1000 rounds, the task is
+performed.
+FIGURE 12. Dead nodes vs number of nodes.
+Figure 13 shows the dead nodes vs. the number of
+nodes. Simulations of EEUMC, EBREC, LEACH, and EULC
+and the optimization of the proposed PSO-EULC methods
+were performed. In this case, we have denoted the energy
+values as 0.5J and the average packet size as 4000 bits.
+For 450 nodes, the task shows that the proposed hybrid
+PSO-EULC algorithm outperforms with the less number of
+dead nodes. The consolidated data from sensor nodes across
+four cases with varying initial energy levels and packet sizes
+is presented in Table 3, which includes the first node death,
+half node death, and last node death. This proves that the
+proposed methods have better performance.
+VOLUME 13, 2025 162067
+
+===== PAGE 12 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+FIGURE 13. PDR vs number of nodes.
+FIGURE 14. Dead nodes vs number of nodes.
+Figure 14 shows the number of packets received vs. nodes.
+The x-axis denotes the number of rounds, and the y-axis
+represents the number of packets received at a multiple
+of 10 4. EBREC, EEUMC, LEACH, EULC, and proposed
+PSO-EULC methods optimization were simulated. In this
+case, we have denoted the energy values as 1J and average
+packet size as 6400 bits, depth 200m, and for 1000 nodes,
+the task is performed. The results show that the number
+of packets received using the proposed hybrid EULC-PSO
+method is 4.7*10 4, which is higher than the alternatives.
+Figure 15 shows the average residual energy performance
+of five routing protocols PSO-EULC, EEUMC, EBREC,
+EULC, and LEACH for three network configurations:
+150m range, 200m range, and 500 nodes. PSO-EULC
+consistently has the highest residual energy in all circum-
+stances, showing greater energy efficiency. EEUMC and
+EBREC follow closely, but EULC and LEACH have smaller
+residual energy. The difference is most noticeable in the
+200m transmission range, where energy usage increases
+for all protocols. This analysis demonstrates PSO-EULC’s
+effectiveness in conserving energy, prolonging network
+lifetime under a variety of transmission and density scenarios.
+FIGURE 15. Average residual energy analysis.
+FIGURE 16. Average dead node analysis.
+Figure 16 compares the number of dead nodes after
+1000 rounds for five protocols: PSO-EULC, EEUMC,
+EBREC, EULC, and LEACH, with three scenarios: 150m
+range, 200m range, and 500 nodes. PSO-EULC has the
+fewest dead nodes in all scenarios, showing improved node
+longevity and energy management. In contrast, LEACH has
+the highest death rate, with approximately 100 dead nodes
+in all settings, indicating low energy efficiency. EEUMC
+and EBREC perform moderately but have high node death.
+Overall, PSO-EULC is the most dependable protocol for
+extending node lifespan, particularly as network size and
+transmission range increase.
+D. COMPUTATIONAL COMPLEXITY ANAL YSIS
+The proposed PSO-EULC algorithm integrates PSO for CH
+selection and EULC for hierarchical communication. The
+computational complexity is derived as follows:
+1. PSO COMPONENT
+Let:
+• N : Total number of sensor nodes
+• P: Number of particles (population size)
+162068 VOLUME 13, 2025
+
+===== PAGE 13 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+TABLE 3. Record of sensor node deaths under various algorithms and conditions.
+• I : Number of PSO iterations
+• K : Number of cluster heads (assumed fixed for each
+particle)
+Each particle evaluates a fitness function that depends on
+the residual energy and distance of all nodes to the selected
+CHs. Hence, each fitness evaluation costs O(N ). Over all
+iterations and particles, the total PSO cost becomes:
+OPSO = O(P × I × N )
+Substituting:
+OPSO = O(30 × 50 × 100) = O(150,000)
+2. EULC COMPONENT
+The EULC algorithm includes:
+• Layering of all N nodes: O(N )
+• Cluster formation and cost computation: O(N × K )
+K = 3, the EULC complexity is:
+OEULC = O(N + N × K ) = O(N × K ) = O(300)
+3. TOTAL COMPLEXITY
+The overall complexity is:
+OTotal = OPSO + OEULC = O(P × I × N ) + O(N × K )
+= O(150,000 + 300) ≈ O(150,000)
+Although PSO-EULC exhibits higher computational com-
+plexity compared to conventional methods such as LEACH,
+EEUMC, and EBREC, its performance gains justify the
+additional cost:
+• Energy Efficiency: PSO ensures optimal CH selection
+by minimizing intra-cluster distance and maximizing
+residual energy, leading to reduced energy consumption
+per round.
+• Network Lifetime: Due to adaptive and depth-aware
+clustering, PSO-EULC significantly improves node
+survival and extends the FND and LND.
+• Stability and Balance: Unlike LEACH and EBREC,
+which rely on random or fixed heuristics, PSO-EULC
+maintains better energy balance and uniform coverage.
+• Scalability: Despite the O(P × I × N ) complexity, the
+PSO module can be parallelized, and the cost remains
+acceptable for moderate-sized UWSNs.
+Hence, PSO-EULC achieves a superior trade-off between
+computational cost and performance, especially in critical
+underwater environments where energy conservation and
+communication reliability are paramount. The presented
+findings were averaged across several independent simu-
+lation runs to account for the stochastic nature of node
+deployment and the PSO algorithm. Each situation was
+recreated over 30 times, each with a distinct random seed.
+Key performance data, such as FND, HND, LND, total
+energy consumption, and PDR were averaged over these
+tests. The observed variance in the performance metrics was
+relatively low, indicating consistent performance. The SD in
+network lifetime LND was around ±2.1 rounds. The energy
+consumption variation across runs was within ±0.03 J.
+These results suggest that the PSO-EULC algorithm is stable
+and resilient to different node distributions and random
+initialization, unlike baseline methods like LEACH, EBREC
+and EEUMC that exhibit higher variance due to their
+randomized nature. As per Figure 17, all three metrics
+exhibit tight, stable distributions, indicating that the proposed
+PSO-EULC algorithm performs reliably even under different
+random conditions. No extreme outliers or chaotic spreads
+across the algorithm exist, and it’s robust. This strengthens the
+proposed PSO-EULC algorithm’s claim that averaging over
+30 runs is statistically justified.
+VOLUME 13, 2025 162069
+
+===== PAGE 14 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+FIGURE 17. Statistical analysis.
+VIII. CONCLUSION
+This research presents an optimized CH selection technique
+based on the proposed hybrid PSO-EULC algorithm. The
+EULC algorithm technique established a node clustering
+system that primarily focuses on node depth and residual
+energy. Additionally, using an improved PSO approach, clus-
+ter formation considers criteria such as the distance between
+cluster nodes and the CH, the range between the CH node
+and the sink, and optimal energy consumption. The proposed
+hybrid PSO-EULC method has demonstrated a significantly
+lower node loss rate than algorithms like EEUMC, EBREC,
+LEACH, and EULC, extending the network’s lifespan. The
+average improvement percentage in four cases shows that
+the PSO-EULC hybrid method results in a 15% lower
+death rate of nodes compared to the EEUMC method,
+despite having 44.4% less residual energy. Additionally,
+the average packet reception rate is 50.25%. It can be
+concluded that the proposed PSO-EULC hybrid algorithm
+produces better results compared to individual methods.
+In the future, various hybridizations of PSO methods and
+new bio-inspired algorithms will be analyzed to optimize
+CH selection, and performance analysis will be conducted to
+evaluate their effectiveness. In addition, we plan to validate
+the proposed method using real underwater sensor datasets
+or field deployment data, which would further strengthen the
+practical applicability of our approach. The research work
+illustrates that the proposed scheme significantly reduces the
+power consumption of SNs compared to traditional methods.
+Additionally, future works will focus on independently
+optimizing various network parameters.
+REFERENCES
+[1] T. Melodia, H. Kulhandjian, L. Kuo, and E. Demirors, ‘‘Advances
+in underwater acoustic networking,’’ in Mobile Ad Hoc Network-
+ing. Hoboken, NJ, USA: Wiley, 2013, sec. 2013, pp. 804–852, doi:
+10.1002/9781118511305.ch23.
+[2] E. M. Sozer, M. Stojanovic, and J. G. Proakis, ‘‘Underwater acoustic
+networks,’’IEEE J. Ocean. Eng., vol. 25, no. 1, pp. 72–83, Jan. 2000, doi:
+10.1109/48.820738.
+[3] J. Murali and T. Shankar, ‘‘A survey on localization and energy efficiency
+in UWSN: Bio-inspired approach,’’ Discover Appl. Sci., vol. 6, no. 12,
+p. 633, Nov. 2024, doi: 10.1007/s42452-024-06318-x.
+[4] S. Climent, A. Sanchez, J. Capella, N. Meratnia, and J. Serrano,
+‘‘Underwater acoustic wireless sensor networks: Advances and future
+trends in physical, MAC and routing layers,’’ Sensors, vol. 14, no. 1,
+pp. 795–833, Jan. 2014, doi: 10.3390/s140100795.
+[5] W. R. Heinzelman, A. Chandrakasan, and H. Balakrishnan, ‘‘Energy-
+efficient communication protocol for wireless microsensor networks,’’ in
+Proc. 33rd Annu. Hawaii Int. Conf. Syst. Sci., vol. 1, Feb. 2000, p. 223, doi:
+10.1109/HICSS.2000.926982.
+[6] M. Azizi and E. Zohrehvandi, ‘‘A hybrid approach of multi-cast
+routing and clustering in underwater sensor networks,’’ Wireless Netw.,
+vol. 30, no. 2, pp. 1121–1132, Feb. 2024, doi: 10.1007/s11276-023-
+03555-7.
+[7] B. Ramesh, B. N. Bhandari, and S. Pothalaiah, ‘‘A hybrid tech-
+nique to provide effective allocation based on mac with UWSN for
+energy efficiency and effective communication,’’ Multimedia Tools Appl.,
+vol. 82, no. 19, pp. 28977–28996, Aug. 2023, doi: 10.1007/s11042-023-
+14897-x.
+[8] J. Kennedy and R. Eberhart, ‘‘Particle swarm optimization,’’ in Proc.
+Int. Conf. Neural Netw. (ICNN), vol. 4, Mar. 1995, pp. 1942–1948, doi:
+10.1109/ICNN.1995.488968.
+[9] A. Gopakumar and L. Jacob, ‘‘Localization in wireless sensor net-
+works using particle swarm optimization,’’ in Proc. IET Conf. Wire-
+less, Mobile Multimedia Netw., 2008, pp. 227–230, doi: 10.1049/cp:
+20080185.
+[10] R. Hou, L. He, S. Hu, and J. Luo, ‘‘Energy-balanced unequal layering
+clustering in underwater acoustic sensor networks,’’ IEEE Access, vol. 6,
+pp. 39685–39691, 2018, doi: 10.1109/ACCESS.2018.2854276.
+[11] C. Li, M. Y e, G. Chen, and J. Wu, ‘‘An energy-efficient unequal
+clustering mechanism for wireless sensor networks,’’ in Proc. IEEE Int.
+Conf. Mobile Adhoc Sensor Syst. Conf., Jun. 2005, pp. 597–604, doi:
+10.1109/MAHSS.2005.1542849.
+[12] P . Li, S. Wang, H. Zhang, and E. Zhang, ‘‘Improved particle swarm
+optimization algorithm of clustering in underwater acoustic sensor
+networks,’’ in Proc. OCEANS-Aberdeen, Jun. 2017, pp. 1–7, doi:
+10.1109/OCEANSE.2017.8084869.
+[13] S. Kaveripakam and R. Chinthaginjala, ‘‘Clustering-based dragonfly
+optimization algorithm for underwater wireless sensor networks,’’ Alexan-
+dria Eng. J., vol. 81, pp. 580–598, Oct. 2023, doi: 10.1016/j.aej.2023.
+09.047.
+[14] K. A. Prasath and T. Shankar, ‘‘RMCHS: Ridge method based cluster
+head selection for energy efficient clustering hierarchy protocol in
+WSN,’’ in Proc. Int. Conf. Smart Technol. Manage. Comput., Com-
+mun., Controls, Energy Mater . (ICSTM), May 2015, pp. 64–70, doi:
+10.1109/ICSTM.2015.7225391.
+[15] G. Eappen, T. Shankar, and R. Nilavalan, ‘‘Cooperative relay spec-
+trum sensing for cognitive radio network: Mutated MWOA-SNN
+approach,’’ Appl. Soft Comput., vol. 114, Jan. 2022, Art. no. 108072, doi:
+10.1016/j.asoc.2021.108072.
+[16] N. Goyal, A. Kumar, R. Popli, L. K. Awasthi, N. Sharma, and G. Sharma,
+‘‘Priority based data gathering using multiple mobile sinks in cluster based
+UWSNs for oil pipeline leakage detection,’’Cluster Comput., vol. 25, no. 2,
+pp. 1341–1354, Apr. 2022, doi: 10.1007/s10586-021-03513-y.
+[17] W. Fei, B. Hexiang, L. Deyu, and W. Jianjun, ‘‘Energy-efficient
+clustering algorithm in underwater sensor networks based on fuzzy c
+means and moth-flame optimization method,’’ IEEE Access, vol. 8,
+pp. 97474–97484, 2020, doi: 10.1109/ACCESS.2020.2997066.
+[18] S. Bharany, S. Sharma, N. Alsharabi, E. T. Eldin, and N. A. Ghamry,
+‘‘Energy-efficient clustering protocol for underwater wireless sensor
+networks using optimized glowworm swarm optimization,’’Frontiers Mar .
+Sci., vol. 10, pp. 2–3, Feb. 2023, doi: 10.3389/fmars.2023.1117787.
+[19] S. Chinnasamy, J. Naveen, P . J. A. Alphonse, C. Dhasarathan,
+and G. Sambasivam, ‘‘Energy-aware multilevel clustering scheme
+for underwater wireless sensor networks,’’ IEEE Access, vol. 10,
+pp. 55868–55875, 2022, doi: 10.1109/ACCESS.2022.3177722.
+[20] K. G. Omeke, M. S. Mollel, M. Ozturk, S. Ansari, L. Zhang, Q. H. Abbasi,
+and M. A. Imran, ‘‘DEKCS: A dynamic clustering protocol to pro-
+long underwater sensor networks,’’ IEEE Sensors J. , vol. 21, no. 7,
+pp. 9457–9464, Apr. 2021, doi: 10.1109/JSEN.2021.3054943.
+162070 VOLUME 13, 2025
+
+===== PAGE 15 =====
+J. Murali, T. Shankar: Improving the Lifetime of UWSN Using Hybrid PSO-EULC Algorithm
+[21] X. Jin, Y . Chen, and X. Xu, ‘‘The analysis of hops for multi-
+hop cooperation in underwater acoustic sensor networks,’’ in Proc.
+IEEE/OES China Ocean Acoustics (COA), Jan. 2016, pp. 1–5, doi:
+10.1109/COA.2016.7535777.
+[22] S. Kumar, R. Chinthaginjala, S. Ahmad, and T. Kim, ‘‘Energy-
+efficient unequal multi-level clustering for underwater wireless sensor
+networks,’’ Alexandria Eng. J., vol. 111, pp. 33–46, May 2025, doi:
+10.1016/j.aej.2024.10.026.
+[23] S. Kaveripakam and R. Chinthaginjala, ‘‘Energy balanced reliable and
+effective clustering for underwater wireless sensor networks,’’ Alexandria
+Eng. J., vol. 77, pp. 41–62, Apr. 2023, doi: 10.1016/j.aej.2023.06.083.
+[24] H. Xu, F. Y e, H. Su, and C. Su, ‘‘Energy-efficient relay selection and power
+allocation optimization for lifetime maximization in underwater acoustic
+sensor networks,’’ IEEE Sensors J., vol. 25, no. 11, pp. 20854–20869,
+Jun. 2025, doi: 10.1109/JSEN.2025.3564254.
+[25] Y . Liu, F. Zhou, and T. Shang, ‘‘A novel initialization method for
+hybrid underwater optical acoustic networks,’’ IEEE Netw., vol. 39, no. 3,
+pp. 277–284, May 2025, doi: 10.1109/MNET.2025.3545347.
+[26] J. Wang, Y . Liu, M. Li, W. Dong, and Y . He, ‘‘QoF: Towards
+comprehensive path quality measurement in wireless sensor networks,’’
+in Proc. IEEE INFOCOM, Apr. 2011, pp. 775–783, doi: 10.1109/INF-
+COM.2011.5935299.
+[27] Z. Lv, Z. Zhang, and B.-C. Seet, ‘‘A target tracking node selection method
+for UWSNs based on dynamic topology,’’ IEEE Sensors J., vol. 25, no. 6,
+pp. 10345–10357, Mar. 2025, doi: 10.1109/JSEN.2025.3530160.
+[28] H. Byeon, S. Kumar, D. Mahajan, K. Haribabu, M. Sivaprakash,
+H. Patil, and J. Sunil, ‘‘A hybrid path finder-based vortex search
+algorithm for optimal energy-efficient node placing and routing in
+UWSN,’’Results Control Optim., vol. 14, Jan. 2024, Art. no. 100379, doi:
+10.1016/j.rico.2024.100379.
+[29] X. Wang, B. Meng, and X. Y uan, ‘‘A new method for routing protocols
+using hybrid fuzzy clustering in UWSNs,’’J. Eng. Appl. Sci., vol. 72, p. 74,
+Apr. 2025, doi: 10.1186/s44147-025-00641-9.
+[30] K. K. Tiwari and S. Singh, ‘‘Golden jackal and enhanced remora
+optimization-based sink mobility for energy hole mitigation in underwater
+wireless sensor network,’’ Int. J. Commun. Syst., vol. 38, no. 10, p. 3,
+Jul. 2025, doi: 10.1002/dac.70114.
+[31] H. Li, M. Khishe, F. Hernando-Gallego, and D. Martín, ‘‘A hybrid bio-
+inspired approach for clustering and routing in UWSNs using MPA
+and HGS,’’ Sustain. Comput., Informat. Syst., vol. 46, Jun. 2025,
+Art. no. 101108, doi: 10.1016/j.suscom.2025.101108.
+[32] T. R. Chenthil, G. C. Jagan, S. Ranjith, and G. Balachandran, ‘‘Energy-
+efficient hierarchical dynamic depth adjustment routing protocol for
+UWSN with distributed sink mobility and semantic self-healing,’’
+J. Netw. Comput. Appl., vol. 238, Jun. 2025, Art. no. 104136, doi:
+10.1016/j.jnca.2025.104136.
+[33] R. Shyamsundar, M. Harshavarthan, and S. Thangavelu, ‘‘A cluster based
+routing for maximizing the lifetime of underwater wireless sensor network
+using gravitational search algorithm,’’ Results Eng., vol. 25, Mar. 2025,
+Art. no. 104470, doi: 10.1016/j.rineng.2025.104470.
+[34] A. H. Rabie, A. I. Saleh, and N. A. Mansour, ‘‘Red piranha optimization
+(RPO): A natural inspired meta-heuristic algorithm for solving complex
+optimization problems,’’ J. Ambient Intell. Humanized Comput. , vol. 14,
+no. 6, pp. 7621–7648, Jun. 2023, doi: 10.1007/s12652-023-04573-1.
+[35] M. Tarif, M. Homaei, and A. Mosavi, ‘‘An enhanced fuzzy routing protocol
+for energy optimization in the underwater wireless sensor networks,’’
+Comput., Mater . Continua, vol. 83, no. 2, pp. 1791–1820, 2025, doi:
+10.32604/cmc.2025.063962.
+[36] P . Kalyanasundaram, R. Arunachalam, E. Mohan, and P . Sherubha, ‘‘A
+hybrid meta-heuristic approach-aided optimal cluster head selection and
+multi-objective derivation for energy efficient routing protocol in wireless
+sensor network,’’Trans. Emerg. Telecommun. Technol., vol. 36, no. 7, p. 3,
+Jul. 2025, doi: 10.1002/ett.70198.
+[37] M. K. Hameed and A. K. Idrees, ‘‘Energy-aware scheduling protocol-
+based hybrid metaheuristic technique to optimize the lifespan in WSNs,’’
+J. Supercomput. , vol. 80, no. 9, pp. 12706–12726, Jun. 2024, doi:
+10.1007/s11227-024-05921-4.
+[38] A. M. Rahmani, ‘‘A Q-learning-based hierarchical routing protocol in
+underwater acoustic sensor networks,’’Proc. Comput. Elect. Eng., vol. 123,
+Apr. 2025, p. 3, doi: 10.1016/j.compeleceng.2025.110211.
+[39] H. Y u, N. Y ao, T. Wang, G. Li, Z. Gao, and G. Tan, ‘‘WDFAD-DBR:
+Weighting depth and forwarding area division DBR routing protocol
+for UASNs,’’ Ad Hoc Netw., vol. 37, pp. 256–282, Feb. 2016, doi:
+10.1016/j.adhoc.2015.08.023.
+[40] T. Shankar, S. Shanmugavel, and A. Rajesh, ‘‘Hybrid HSA and PSO
+algorithm for energy efficient cluster head selection in wireless sensor
+networks,’’ Swarm Evol. Comput., vol. 30, pp. 1–10, Oct. 2016, doi:
+10.1016/j.swevo.2016.03.003.
+[41] L. Berkhovskikh and Y . Lysanov, Fundamentals of Ocean Acoustics. New
+Y ork, NY , USA: Springer, 1982.
+[42] V . Srividhya and T. Shankar, ‘‘Energy proficient clustering technique for
+lifetime enhancement of cognitive radio–based heterogeneous wireless
+sensor network,’’ Int. J. Distrib. Sensor Netw., vol. 14, no. 3, Mar. 2018,
+Art. no. 155014771876759, doi: 10.1177/1550147718767598.
+[43] O. Y ounis and S. Fahmy, ‘‘HEED: A hybrid, energy-efficient, dis-
+tributed clustering approach for ad hoc sensor networks,’’ IEEE
+Trans. Mobile Comput., vol. 3, no. 4, pp. 366–379, Oct. 2004, doi:
+10.1109/TMC.2004.41.
+J. MURALI received the B.E. degree in electron-
+ics and communication engineering from Anna
+University, Tamil Nadu, India, in 2006, and
+the M.E. degree in applied electronics from
+Sathyabama University, Tamil Nadu, in 2013.
+He is currently pursuing the Ph.D. degree in under-
+water wireless sensor networks with the School of
+Electronics Engineering, VIT University, V ellore,
+Tamil Nadu. He is a Teaching Research Associate.
+He has 13 years of academic teaching experience.
+His research interests include underwater wireless sensor networks, wireless
+sensor networks, bio-inspired optimization techniques based on wireless
+networks, and wireless communications.
+T. SHANKAR (Senior Member, IEEE) received
+the Bachelor of Engineering degree in electronics
+and communication engineering from the Univer-
+sity of Madras, Tamil Nadu, India, in 1999, and the
+M.E. and Ph.D. degrees in applied electronics from
+the College of Engineering Guindy, Anna Univer-
+sity, Tamil Nadu, in 2005 and 2014, respectively.
+Currently, he is a Professor with the School of
+Electronics Engineering, VIT University, V ellore.
+His research interests include wireless sensor
+networks, bio-inspired optimization techniques based on wireless networks
+and image processing, MANET, V ANET, software-defined networks, LTE,
+the IoT, and emerging. He is a Life Member of the Institution of Electronics
+and Telecommunication Engineers (IETE), Indian Society for Technical
+Education (ISTE), and MSCRS.
+VOLUME 13, 2025 162071

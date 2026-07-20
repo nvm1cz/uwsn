@@ -1,0 +1,7 @@
+run_id,method,method_label,topology_id,distribution,space_m,node_count,seed,packet_size_bits,initial_energy_j,transmission_range_m,max_rounds,cluster_head_ratio,eulc_candidate_ratio,pso_particles,pso_iterations,pso_inertia,pso_c1,pso_c2,pso_omega,alpha_weight,beta_weight,gamma_weight,recluster_interval,connectivity_penalty_enabled
+paper_clean_v1_pso_eulc_uniform_s100_n20_seed4000_r1000,pso_eulc,PSO-EULC,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,True
+paper_clean_v1_pso_eulc_no_conn_penalty_uniform_s100_n20_seed4000_r1000,pso_eulc_no_conn_penalty,PSO-EULC w/o conn. penalty,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,False
+paper_clean_v1_eeumc_uniform_s100_n20_seed4000_r1000,eeumc,EEUMC,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,True
+paper_clean_v1_ebrec_uniform_s100_n20_seed4000_r1000,ebrec,EBREC,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,True
+paper_clean_v1_eulc_uniform_s100_n20_seed4000_r1000,eulc,EULC,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,True
+paper_clean_v1_leach_uniform_s100_n20_seed4000_r1000,leach,LEACH,uniform_s100_n20_seed4000,uniform,100,20,4000,6400,0.5,200.0,1000,0.2,0.4,20,50,0.7,1.5,1.5,0.65,0.6,0.25,0.15,20,True

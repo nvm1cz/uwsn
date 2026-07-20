@@ -1,0 +1,40 @@
+metric,value
+distributions,"uniform,gaussian,exponential"
+spaces_m,"100,500,1000"
+node_set_count,11
+runs_per_distribution_space_node,15
+fixed_topology_count,495
+fixed_node_coordinate_rows,266400
+transmission_range_count,1
+packet_size_bits,6400
+packet_size_count,1
+initial_energy_j,0.5
+initial_energy_count,1
+particle_counts,"20,30"
+particle_count_options,2
+acceleration_coefficients_c1_c2,1.5:1.5
+acceleration_coefficient_pair_count,1
+optimizer_count,4
+pso_ga_de_parameter_set_count,4
+leach_parameter_set_count,1
+experiment_input_count,11799
+cluster_head_ratio_values,"0.10,0.15,0.20,0.25"
+kch_sensitivity_scope,"PSO, GA, DE, LEACH baseline, particles=20, c1=c2=1.5, extra ratios=0.10/0.15/0.25"
+kch_sensitivity_added_inputs,5940
+kch_sensitivity_latest_added_inputs,4455
+large_case_reduction_scope,"space=1000, node_count=1500/2000"
+large_case_seed_values,"4000,4001,4002"
+large_case_particle_counts,20
+large_case_pso_iterations,20
+large_case_input_id_suffix,it20
+large_case_removed_inputs,2880
+large_case_retagged_inputs,450
+space1000_reduction_scope,all node_count values 500/1000/1500/2000
+space1000_seed_values,"4000,4001,4002"
+space1000_parameter_set,baseline
+space1000_particle_counts,20
+space1000_cluster_head_ratio,0.2
+space1000_pso_iterations,20
+space1000_input_id_suffix,it20
+space1000_removed_inputs,3636
+space1000_retagged_inputs,72

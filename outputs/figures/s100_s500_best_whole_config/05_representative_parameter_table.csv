@@ -1,0 +1,28 @@
+﻿Parameter,FT5,Residual Energy,Runtime,Convergence
+Chart,FT5,Residual Energy,Runtime,Convergence
+Selection,Highest mean FT5 over PSO/GA/DE,Highest mean residual energy over PSO/GA/DE,Lowest mean runtime over PSO/GA/DE,Baseline convergence-only run; aggregated by space
+Algorithms,"DE, GA, PSO","DE, GA, LEACH, PSO","DE, GA, LEACH, PSO","DE, GA, PSO"
+Spaces (m),"100, 500","100, 500","100, 500","100, 500"
+Node counts,"s100: 20,50,100,150; s500: 100,200,300","s100: 20,50,100,150; s500: 100,200,300","s100: 20,50,100,150; s500: 100,200,300","s100: 20,50,100,150; s500: 100,200,300"
+Distributions,"exponential, gaussian, uniform","exponential, gaussian, uniform","exponential, gaussian, uniform","exponential, gaussian, uniform"
+Seeds,4000-4014 (15 values),4000-4014 (15 values),4000-4014 (15 values),"4000, 4001, 4002"
+Runs per point,45,45,45,9 runs x 51 iterations
+Parameter set,balanced_low_omega,baseline,baseline,baseline
+Transmission range (m),200,200,200,200
+Packet size (bit),6400,6400,6400,6400
+Initial energy (J),0.5,0.5,0.5,0.5
+Max rounds,5000,5000,5000,5000
+Stop alive ratio,0.95,0.95,0.95,0.95
+alpha,0.34,0.6,0.6,0.6
+beta,0.33,0.25,0.25,0.25
+gamma,0.33,0.15,0.15,0.15
+K_CH,0.2,0.1,0.1,0.2
+Candidate ratio,0.4,0.4,0.4,0.4
+Population size,20,20,20,20
+Iterations,50,50,50,50
+Inertia,0.5,0.7,0.7,0.7
+c1,1.5,1.5,1.5,1.5
+c2,1.5,1.5,1.5,1.5
+Cost omega,0.4,0.65,0.65,0.65
+Objective version,2,2,2,2
+Contention penalty,factor=0.01; ref=10; max=4,factor=0.01; ref=10; max=4,factor=0.01; ref=10; max=4,factor=0.01; ref=10; max=4

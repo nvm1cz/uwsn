@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+.venv/
+venv/
+env/
+.env
+.env.*
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated experiment data can exceed GitHub's file-size limits.
+outputs/data/csv/output/
+outputs/data/csv/raw/
+outputs/data/diagnostics/
+outputs/paper_clean/raw/
+outputs/paper_clean_smoke/
+
+# Local runtime logs and temporary files.
+*.log
+*.tmp
+*.bak

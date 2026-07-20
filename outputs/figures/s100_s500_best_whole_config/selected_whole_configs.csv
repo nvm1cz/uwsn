@@ -1,0 +1,4 @@
+﻿criterion,folder_name,score,config_note,algorithms
+ft5,01_balanced_low_omega_k0p2_p20_it50_w0p4_a0p34_b0p33_g0p33,726.9216931216931,balanced_low_omega; R=200m; packet=6400 bit; E0=0.5J; K_CH=0.2; alpha/beta/gamma=0.34/0.33/0.33; candidate=0.4; particle=20; iter=50; inertia=0.5; c1=c2=1.5; omega=0.4,"DE,GA,PSO"
+energy,03_baseline_k0p1_p20_it50_w0p65_a0p6_b0p25_g0p15,49.130235767195764,baseline; R=200m; packet=6400 bit; E0=0.5J; K_CH=0.1; alpha/beta/gamma=0.6/0.25/0.15; candidate=0.4; particle=20; iter=50; inertia=0.7; c1=c2=1.5; omega=0.65,"DE,GA,LEACH,PSO"
+runtime,03_baseline_k0p1_p20_it50_w0p65_a0p6_b0p25_g0p15,27.747131534391535,baseline; R=200m; packet=6400 bit; E0=0.5J; K_CH=0.1; alpha/beta/gamma=0.6/0.25/0.15; candidate=0.4; particle=20; iter=50; inertia=0.7; c1=c2=1.5; omega=0.65,"DE,GA,LEACH,PSO"

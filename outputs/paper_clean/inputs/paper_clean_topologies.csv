@@ -1,0 +1,2 @@
+topology_id,distribution,space_m,node_count,seed,width_m,height_m,depth_m,sink_x_m,sink_y_m,sink_depth_m,deployment_distribution,gaussian_std_fraction,exponential_scale_fraction
+uniform_s100_n20_seed4000,uniform,100,20,4000,100,100,100,50.0,50.0,0.0,uniform,0.18,0.35
