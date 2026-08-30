@@ -1,0 +1,122 @@
+{
+  "P1": {
+    "optimizer": "pso",
+    "population": 30,
+    "iterations": 50,
+    "pso_inertia": 0.7298,
+    "pso_inertia_schedule": "fixed",
+    "pso_inertia_start": 0.7298,
+    "pso_inertia_end": 0.7298,
+    "pso_c1": 1.49618,
+    "pso_c1_schedule": "fixed",
+    "pso_c1_start": 1.49618,
+    "pso_c1_end": 1.49618,
+    "pso_c2": 1.49618,
+    "pso_c2_schedule": "fixed",
+    "pso_c2_start": 1.49618,
+    "pso_c2_end": 1.49618
+  },
+  "P2": {
+    "optimizer": "pso",
+    "population": 30,
+    "iterations": 50,
+    "pso_inertia": 0.9,
+    "pso_inertia_schedule": "linear",
+    "pso_inertia_start": 0.9,
+    "pso_inertia_end": 0.4,
+    "pso_c1": 2.0,
+    "pso_c1_schedule": "fixed",
+    "pso_c1_start": 2.0,
+    "pso_c1_end": 2.0,
+    "pso_c2": 2.0,
+    "pso_c2_schedule": "fixed",
+    "pso_c2_start": 2.0,
+    "pso_c2_end": 2.0
+  },
+  "P3": {
+    "optimizer": "pso",
+    "population": 30,
+    "iterations": 50,
+    "pso_inertia": 0.9,
+    "pso_inertia_schedule": "linear",
+    "pso_inertia_start": 0.9,
+    "pso_inertia_end": 0.4,
+    "pso_c1": 2.5,
+    "pso_c1_schedule": "linear",
+    "pso_c1_start": 2.5,
+    "pso_c1_end": 0.5,
+    "pso_c2": 0.5,
+    "pso_c2_schedule": "linear",
+    "pso_c2_start": 0.5,
+    "pso_c2_end": 2.5
+  },
+  "P4": {
+    "optimizer": "pso",
+    "population": 50,
+    "iterations": 30,
+    "pso_inertia": 0.9,
+    "pso_inertia_schedule": "linear",
+    "pso_inertia_start": 0.9,
+    "pso_inertia_end": 0.4,
+    "pso_c1": 2.0,
+    "pso_c1_schedule": "fixed",
+    "pso_c1_start": 2.0,
+    "pso_c1_end": 2.0,
+    "pso_c2": 2.0,
+    "pso_c2_schedule": "fixed",
+    "pso_c2_start": 2.0,
+    "pso_c2_end": 2.0
+  },
+  "P5": {
+    "optimizer": "pso",
+    "population": 20,
+    "iterations": 75,
+    "pso_inertia": 0.9,
+    "pso_inertia_schedule": "linear",
+    "pso_inertia_start": 0.9,
+    "pso_inertia_end": 0.4,
+    "pso_c1": 2.0,
+    "pso_c1_schedule": "fixed",
+    "pso_c1_start": 2.0,
+    "pso_c1_end": 2.0,
+    "pso_c2": 2.0,
+    "pso_c2_schedule": "fixed",
+    "pso_c2_start": 2.0,
+    "pso_c2_end": 2.0
+  },
+  "G1": {
+    "optimizer": "ga",
+    "population": 30,
+    "iterations": 50,
+    "ga_crossover_rate": 0.8,
+    "ga_mutation_rate": 0.01
+  },
+  "G2": {
+    "optimizer": "ga",
+    "population": 30,
+    "iterations": 50,
+    "ga_crossover_rate": 0.8,
+    "ga_mutation_rate": 0.05
+  },
+  "G3": {
+    "optimizer": "ga",
+    "population": 30,
+    "iterations": 50,
+    "ga_crossover_rate": 0.9,
+    "ga_mutation_rate": 0.1
+  },
+  "G4": {
+    "optimizer": "ga",
+    "population": 50,
+    "iterations": 30,
+    "ga_crossover_rate": 0.8,
+    "ga_mutation_rate": 0.05
+  },
+  "G5": {
+    "optimizer": "ga",
+    "population": 20,
+    "iterations": 75,
+    "ga_crossover_rate": 0.8,
+    "ga_mutation_rate": 0.05
+  }
+}

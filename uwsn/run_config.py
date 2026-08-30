@@ -47,6 +47,20 @@ class TunableParams:
 
     # EULC
     eulc_candidate_ratio: float
+    pso_inertia_schedule: str = "fixed"
+    pso_inertia_start: float = 0.7
+    pso_inertia_end: float = 0.7
+    pso_c1_schedule: str = "fixed"
+    pso_c1_start: float = 1.5
+    pso_c1_end: float = 1.5
+    pso_c2_schedule: str = "fixed"
+    pso_c2_start: float = 1.5
+    pso_c2_end: float = 1.5
+    ga_crossover_rate: float = 0.85
+    ga_mutation_rate: float = 0.05
+    ga_mutation_sigma: float = 0.10
+    ga_tournament_size: int = 3
+    ga_elite_count: int = 2
     connectivity_penalty_enabled: bool = True
 
     # ðŸ”¥ AUTO SINK
@@ -129,4 +143,3 @@ SIMULATION_PARAMS = TunableParams(
 RUNS = 10
 BASE_SEED = 42
 OUTPUT_DIR = "outputs"
-

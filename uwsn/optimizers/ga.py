@@ -87,7 +87,7 @@ def run_ga_cluster_head_selection(
         return score
 
     def tournament(scores: np.ndarray) -> np.ndarray:
-        size = min(3, pop_size)
+        size = min(max(2, int(params.ga_tournament_size)), pop_size)
         picked = rng.choice(pop_size, size=size, replace=False)
         return population[int(picked[int(np.argmin(scores[picked]))])].copy()
 
@@ -99,10 +99,16 @@ def run_ga_cluster_head_selection(
     if convergence_callback is not None:
         convergence_callback(0, best_score)
 
-    elite_count = min(2, pop_size)
-    crossover_rate = 0.85
-    mutation_rate = min(0.25, max(1.0 / max(dims, 1), 0.02))
-    mutation_sigma = 0.10
+    elite_count = min(max(1, int(params.ga_elite_count)), pop_size)
+    crossover_rate = float(params.ga_crossover_rate)
+    mutation_rate = float(params.ga_mutation_rate)
+    mutation_sigma = float(params.ga_mutation_sigma)
+    if not 0.0 <= crossover_rate <= 1.0:
+        raise ValueError("ga_crossover_rate must be in [0, 1]")
+    if not 0.0 <= mutation_rate <= 1.0:
+        raise ValueError("ga_mutation_rate must be in [0, 1]")
+    if mutation_sigma < 0.0:
+        raise ValueError("ga_mutation_sigma must be non-negative")
 
     for generation_idx in range(1, params.pso_iterations + 1):
         elite_indices = np.argsort(scores)[:elite_count]
@@ -147,4 +153,3 @@ def run_ga_cluster_head_selection(
         candidates,
         cost_normalization,
     )
-

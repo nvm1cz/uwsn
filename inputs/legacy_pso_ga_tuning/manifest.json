@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "model": "legacy_static_without_mobility_noise_delay",
+  "space_node_combinations": 9,
+  "topology_count": 3,
+  "packet_energy_count": 4,
+  "scenario_count": 108,
+  "parameter_set_count": 10,
+  "pso_parameter_set_count": 5,
+  "ga_parameter_set_count": 5,
+  "paired_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "runs_per_scenario": 200,
+  "total_runs": 21600,
+  "excluded_cases": [
+    {
+      "space_m": 100,
+      "node_count": 20
+    },
+    {
+      "space_m": 1000,
+      "node_count": 2000
+    }
+  ],
+  "files": {
+    "scenarios_csv": "scenarios.csv",
+    "scenarios_json": "scenarios.json",
+    "optimizer_parameter_sets_csv": "optimizer_parameter_sets.csv",
+    "optimizer_parameter_sets_json": "optimizer_parameter_sets.json",
+    "run_plan_csv": "run_plan.csv"
+  }
+}

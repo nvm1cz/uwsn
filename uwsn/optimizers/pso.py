@@ -24,6 +24,48 @@ PSO_POSITION_MAX = 1.0
 PSO_VELOCITY_MAX = 1.0
 
 
+def _linear_value(start: float, end: float, iteration_index: int, iterations: int) -> float:
+    if iterations <= 1:
+        return float(end)
+    fraction = float(iteration_index) / float(iterations - 1)
+    return float(start) + fraction * (float(end) - float(start))
+
+
+def scheduled_pso_coefficients(
+    params: TunableParams, iteration_index: int
+) -> tuple[float, float, float]:
+    """Return w, c1 and c2 for a zero-based PSO iteration."""
+    total = int(params.pso_iterations)
+
+    def resolve(mode: str, fixed: float, start: float, end: float) -> float:
+        if mode == "fixed":
+            return float(fixed)
+        if mode == "linear":
+            return _linear_value(start, end, iteration_index, total)
+        raise ValueError(f"unsupported PSO coefficient schedule: {mode}")
+
+    return (
+        resolve(
+            params.pso_inertia_schedule,
+            params.pso_inertia,
+            params.pso_inertia_start,
+            params.pso_inertia_end,
+        ),
+        resolve(
+            params.pso_c1_schedule,
+            params.pso_c1,
+            params.pso_c1_start,
+            params.pso_c1_end,
+        ),
+        resolve(
+            params.pso_c2_schedule,
+            params.pso_c2,
+            params.pso_c2_start,
+            params.pso_c2_end,
+        ),
+    )
+
+
 def run_pso_cluster_head_selection(
     case: SimulationCase,
     params: TunableParams,
@@ -119,13 +161,14 @@ def run_pso_cluster_head_selection(
 
     for iteration_idx in range(1, params.pso_iterations + 1):
         improved_this_iteration = False
+        inertia, c1, c2 = scheduled_pso_coefficients(params, iteration_idx - 1)
         for i in range(pop_size):
             r1 = rng.random(dims)
             r2 = rng.random(dims)
             velocities[i] = (
-                params.pso_inertia * velocities[i]
-                + params.pso_c1 * r1 * (personal_best[i] - positions_swarm[i])
-                + params.pso_c2 * r2 * (global_best - positions_swarm[i])
+                inertia * velocities[i]
+                + c1 * r1 * (personal_best[i] - positions_swarm[i])
+                + c2 * r2 * (global_best - positions_swarm[i])
             )
             velocities[i] = np.clip(velocities[i], -PSO_VELOCITY_MAX, PSO_VELOCITY_MAX)
             positions_swarm[i] = np.clip(
@@ -176,4 +219,3 @@ def run_pso_cluster_head_selection(
         candidates,
         cost_normalization,
     )
-
